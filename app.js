@@ -1,21 +1,16 @@
 const express = require('express')
-const app = express()
-const port = 3000
+const app = express();
+const port = 3000;
+const routes = require("./routes");
+app.use(express.json());
 
 
-const albuns = require("./albuns")
-const gravadoras = require("./gravadoras")
+
+app.use(routes);
 
 app.get('/', (req, res) => {
-res.send('àlbuns Musicais')
-})
-
-
-
-app.use('/albuns', albuns);
-app.use('/gravadoras', gravadoras);
-
-
+    res.send('àlbuns Musicais')
+    })
 
 
 app.listen(port, () => {
