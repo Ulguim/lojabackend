@@ -1,4 +1,4 @@
-const dbKnex = require("../data/db_config");  // dados de conexão com o banco de dados
+const dbKnex = require("../db_config");  // dados de conexão com o banco de dados
 
 module.exports = {
 
@@ -13,16 +13,13 @@ module.exports = {
     },
     // Armazena Gravadoras
     async store(req, res) {
-        const gravadoras = await dbKnex("gravadoras").orderBy("id", "desc");
+        
         const { nome, contato } = req.body;
-
 
         if (!nome || !contato) {
             res.status(400).json({ msg: "Enviar todos os Dados" });
             return;
         }
-
-
         try {
 
             const novo = await dbKnex("gravadoras").insert({ nome, contato });
